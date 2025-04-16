@@ -1,11 +1,12 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
-import gradle.kotlin.dsl.accessors._e51b323cfb2e2618e566e57940084292.publishing
 
 plugins {
+    `java-library`
+    `maven-publish`
+    id("velocity-publish")
     application
     id("velocity-init-manifest")
     alias(libs.plugins.shadow)
-    `maven-publish`
 }
 
 application {
@@ -135,18 +136,3 @@ dependencies {
     annotationProcessor(libs.auto.service)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
-        }
-    }
-}
