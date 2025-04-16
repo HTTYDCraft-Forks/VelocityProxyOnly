@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
+import gradle.kotlin.dsl.accessors._e51b323cfb2e2618e566e57940084292.publishing
 
 plugins {
     application
@@ -131,4 +132,16 @@ dependencies {
     testImplementation(libs.mockito)
 
     annotationProcessor(libs.auto.service)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group as String
+            artifactId = "velocity-proxy"
+            version = project.version as String
+
+            from(components["java"])
+        }
+    }
 }
