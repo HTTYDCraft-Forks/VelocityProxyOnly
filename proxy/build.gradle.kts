@@ -5,6 +5,7 @@ plugins {
     application
     id("velocity-init-manifest")
     alias(libs.plugins.shadow)
+    `maven-publish`
 }
 
 application {
@@ -136,12 +137,16 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group as String
-            artifactId = "velocity-proxy"
-            version = project.version as String
-
+        create<MavenPublication>("mavenJava") {
             from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
         }
     }
 }
