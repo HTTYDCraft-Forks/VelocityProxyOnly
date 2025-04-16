@@ -1,4 +1,7 @@
 plugins {
+    `java-library`
+    `maven-publish`
+    id("velocity-publish")
     alias(libs.plugins.shadow)
 }
 
