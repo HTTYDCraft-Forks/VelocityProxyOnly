@@ -100,8 +100,6 @@ tasks {
 dependencies {
     implementation(project(":velocity-api"))
     implementation(project(":velocity-native"))
-    implementation(project(":velocity-proxy-log4j2-plugin"))
-
     implementation(libs.bundles.log4j)
     implementation(libs.kyori.ansi)
     implementation(libs.netty.codec)
@@ -132,7 +130,5 @@ dependencies {
     compileOnly(libs.spotbugs.annotations)
     compileOnly(libs.auto.service.annotations)
     testImplementation(libs.mockito)
-
     annotationProcessor(libs.auto.service)
 }
-
